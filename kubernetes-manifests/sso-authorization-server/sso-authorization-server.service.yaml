@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sso-authorization-server
+  labels:
+    app: sso-authorization-server
+    tier: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: sso-authorization-server
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      name: http

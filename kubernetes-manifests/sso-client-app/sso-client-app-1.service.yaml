@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sso-client-app-1
+  namespace: default
+  labels:
+    app: sso-client-app-1
+    tier: frontend
+spec:
+  type: NodePort
+#  type: LoadBalancer
+  selector:
+    app: sso-client-app-1
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      name: http-server

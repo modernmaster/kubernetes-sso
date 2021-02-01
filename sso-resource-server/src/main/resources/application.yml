@@ -1,0 +1,25 @@
+server: 
+  port: 8080
+  servlet: 
+    context-path: /
+
+####### resource server configuration properties
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://sso-authorization-server/auth/realms/baeldung
+          jwk-set-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/certs
+
+logging:
+  level:
+    root: INFO
+    org:
+      apache:
+        http: INFO
+    springframework:
+      data:
+        rest:
+          webmvc:
+            json: ERROR

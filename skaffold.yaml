@@ -1,0 +1,32 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+build:
+  artifacts:
+    - image: sso-authorization-server
+      jib:
+        project: sso-authorization-server
+    - image: sso-client-app-1
+      jib:
+        project: sso-client-app-1
+    - image: sso-resource-server
+      jib:
+        project: sso-resource-server
+  tagPolicy:
+    sha256: {}
+deploy:
+  kubectl:
+    manifests:
+    - ./kubernetes-manifests/**/**.yaml
+profiles:
+  - name: cloudbuild
+    build:
+      googleCloudBuild: {}
+  - name: dockerfile
+    build:
+      artifacts:
+        - image: sso-authorization-server
+          context: sso-authorization-server
+        - image: sso-client-app-1
+          context: sso-client-app-1
+        - image: sso-resource-server
+          context: sso-resource-server

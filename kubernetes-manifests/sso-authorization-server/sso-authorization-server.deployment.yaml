@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sso-authorization-server
+  labels:
+    app: sso-authorization-server
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sso-authorization-server
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: sso-authorization-server
+        tier: frontend
+    spec:
+      containers:
+      - name: sso-authorization-server
+        image: sso-authorization-server
+        ports:
+        - name: http-server
+          containerPort: 8080
+        env:
+#        - name: PORT
+#          value: "8083"
+#        - name: PROXY_ADDRESS_FORWARDING
+#          value: "true"
+

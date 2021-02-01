@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:testdb
+
+keycloak:
+  server:
+    contextPath: /auth
+    adminUser:
+      username: bael-admin
+      password: pass
+    realmImportFile: baeldung-realm.json
+
+logging:
+  level:
+    root: ERROR
+    org:
+      apache:
+        http: ERROR
+
+    springframework:
+      data:
+        rest:
+          webmvc:
+            json: ERROR
+    com:
+      baeldung:
+        auth:
+          AuthorizationServerApp: ERROR

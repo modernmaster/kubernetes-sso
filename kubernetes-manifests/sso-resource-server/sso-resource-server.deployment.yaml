@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sso-resource-server
+  labels:
+    app: sso-resource-server
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sso-resource-server
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: sso-resource-server
+        tier: backend
+    spec:
+      containers:
+        - name: sso-resource-server
+          image: sso-resource-server
+          ports:
+            - name: http-server
+              containerPort: 8080
+          env:
+#            - name: PORT
+#              value: "8082"
+
