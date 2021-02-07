@@ -1,16 +1,14 @@
-server: 
-  port: 8080
-  servlet: 
-    context-path: /
-
-####### resource server configuration properties
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://sso-authorization-server/auth/realms/baeldung
-          jwk-set-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/certs
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://discovery-service:8761/eureka}
+#  instance:
+#    statusPageUrlPath: ${management.contextPath}/info
+#    healthCheckUrlPath: ${management.contextPath}/health
 
 logging:
   level:
@@ -23,3 +21,19 @@ logging:
         rest:
           webmvc:
             json: ERROR
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+####### resource server configuration properties
+spring:
+  application:
+    name: sso-resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://sso-authorization-server/auth/realms/baeldung
+          jwk-set-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/certs

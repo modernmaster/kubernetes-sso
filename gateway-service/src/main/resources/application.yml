@@ -1,0 +1,57 @@
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://discovery-service:8761/eureka}
+
+logging:
+  level:
+    root: DEBUG
+
+#          filters:
+#            - TokenRelay=
+#            - RemoveRequestHeader=Cookie
+
+
+#proxy:
+#  auth:
+#    routes:
+#      customers: oauth2
+#      stores: passthru
+#      recommendations: none
+
+
+server: 
+  port: 8080
+  servlet: 
+    context-path: /
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+#      default-filters:
+#        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      default-filters:
+        - DedupeResponseHeader=X-Forwarded-For
+      routes:
+        - id: sso-client-app-1
+          uri: lb://sso-client-app-1
+          filters:
+          - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin X-Forwarded-Port
+#          predicates:
+#            - Path=/**
+#        - id: sso-resource-server
+#          uri: lb://sso-resource-server
+#          predicates:
+#            - Path=/api/foos/**
+#        - id: sso-authorization-server
+#          uri: lb://sso-authorization-server
+#          predicates:
+#            - Path=/oauth2/**
+
+

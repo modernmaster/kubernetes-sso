@@ -3,16 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.baeldung</groupId>
 	<artifactId>sso-authorization-server</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.6.RELEASE</version>
-		<relativePath />
+		<artifactId>oauth-sso</artifactId>
+		<groupId>com.baeldung</groupId>
+		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -40,6 +38,19 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<!-- discovery -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>3.0.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- Keycloak server -->
@@ -102,7 +113,6 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>2.7.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -126,13 +136,7 @@
 	</developers>
 
 	<properties>
-		<!-- non-dependencies -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>11</java.version>
         <keycloak.version>11.0.2</keycloak.version>
-
-        <!-- these should be updated together with Keycloak -->
-        <!-- check keycloak-dependencies-server-all effective pom -->
         <infinispan.version>10.1.8.Final</infinispan.version>
         <resteasy.version>3.12.1.Final</resteasy.version>
 	</properties>

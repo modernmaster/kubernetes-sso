@@ -1,18 +1,21 @@
-package com.baeldung.resource;
+package com.baeldung.gateway;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+import static org.slf4j.LoggerFactory.getLogger;
+
 
 @SpringBootApplication
-@EnableEurekaClient
-public class ResourceServerApp {
+@EnableDiscoveryClient
+//@lombok.extern.slf4j.Slf4j
+public class GatewayServiceApplication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ResourceServerApp.class);
+    private static final Logger LOG = getLogger(GatewayServiceApplication.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         final String[] expectedVars = {};
         for (String v : expectedVars) {
             String value = System.getenv(v);
@@ -21,7 +24,6 @@ public class ResourceServerApp {
                 System.exit(1);
             }
         }
-        SpringApplication.run(ResourceServerApp.class, args);
+        SpringApplication.run(GatewayServiceApplication.class, args);
     }
-
 }

@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: sso-client-ingress
+  name: network-ingress
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target:  /$1
@@ -19,7 +19,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: sso-client-app-1
+                name: gateway-service
                 port:
                   number: 80
 

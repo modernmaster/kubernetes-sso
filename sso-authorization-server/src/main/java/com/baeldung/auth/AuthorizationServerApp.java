@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfigurati
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 
@@ -15,6 +16,7 @@ import com.baeldung.auth.config.KeycloakServerProperties;
 
 @SpringBootApplication(exclude = LiquibaseAutoConfiguration.class)
 @EnableConfigurationProperties({ KeycloakServerProperties.class })
+@EnableEurekaClient
 public class AuthorizationServerApp {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthorizationServerApp.class);

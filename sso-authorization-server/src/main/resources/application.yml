@@ -1,7 +1,18 @@
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://discovery-service:8761/eureka}
+
 server:
   port: 8080
 
 spring:
+  application:
+    name: sso-authorization-server
   datasource:
     username: sa
     url: jdbc:h2:mem:testdb

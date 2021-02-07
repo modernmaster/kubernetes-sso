@@ -1,4 +1,15 @@
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://discovery-service:8761/eureka}
+
 spring:
+  application:
+    name: sso-client-app-1
   security:
     oauth2:
       client:
@@ -11,7 +22,7 @@ spring:
             redirect-uri: https://localhost/login/oauth2/code/custom
         provider:
           custom:
-            authorization-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/auth
+            authorization-uri: https://localhost/auth/realms/baeldung/protocol/openid-connect/auth
             token-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/token
             user-info-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/userinfo
             user-name-attribute: preferred_username
@@ -27,13 +38,13 @@ server:
 
 logging:
   level:
-    root: ERROR
+    root: DEBUG
     org:
       apache:
-        http: ERROR
+        http: DEBUG
     springframework:
       data:
         rest:
           webmvc:
-            json: ERROR
+            json: DEBUG
 

@@ -1,26 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sso-client-app-1
+  name: discovery-service
   namespace: default
   labels:
-    app: sso-client-app-1
+    app: discovery-service
     tier: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sso-client-app-1
+      app: discovery-service
       tier: frontend
   template:
     metadata:
       labels:
-        app: sso-client-app-1
+        app: discovery-service
         tier: frontend
     spec:
       containers:
-        - name: sso-client-app-1
-          image: sso-client-app-1
+        - name: discovery-service
+          image: discovery-service
           ports:
             - containerPort: 8080
               name: http-server
+          env:
+            - name: SSO-RESOURCE-SERVER_API_ADDR
+              value: http://sso-resource-server/api/foos/
