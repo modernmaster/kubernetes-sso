@@ -14,9 +14,6 @@ build:
     - image: discovery-service
       jib:
         project: discovery-service
-    - image: gateway-service
-      jib:
-        project: gateway-service
   tagPolicy:
     sha256: {}
 deploy:
@@ -38,5 +35,4 @@ profiles:
           context: sso-resource-server
         - image: discovery-service
           context: discovery-service
-        - image: gateway-service
-          context: gateway-service
+

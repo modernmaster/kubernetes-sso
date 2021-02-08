@@ -14,7 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
               .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/user/info", "/api/foos/**")
-                  .hasAuthority("SCOPE_read")
+                  .hasAuthority("https://api.ebay.com/oauth/api_scope")
                 .antMatchers(HttpMethod.POST, "/api/foos")
                   .hasAuthority("SCOPE_write")
                 .anyRequest()

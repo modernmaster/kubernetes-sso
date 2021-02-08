@@ -10,6 +10,7 @@ spec:
   tls:
     - hosts:
         - localhost
+        - sso-authorization-server
       secretName: default-server-secret
   rules:
     - host: localhost
@@ -19,7 +20,16 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: gateway-service
+                name: sso-client-app-1
                 port:
                   number: 80
-
+    - host: sso-authorization-server
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: sso-authorization-server
+                port:
+                  number: 80

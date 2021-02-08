@@ -28,7 +28,6 @@
 		<module>sso-authorization-server</module>
 		<module>sso-resource-server</module>
 		<module>sso-client-app-1</module>
-        <module>gateway-service</module>
 		<module>discovery-service</module>
 	</modules>
 

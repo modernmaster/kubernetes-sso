@@ -24,7 +24,8 @@ public class FooClientController {
 
     @GetMapping("/foos")
     public String getFoos(Model model) {
-        String fooApiUrl = String.format("https://%s%s",this.discoveryClient.getInstances(SSO_RESOURCE_SERVER), PATH);
+        String resourceServerHost = "SSO-resource-server";// this.discoveryClient.getInstances(SSO_RESOURCE_SERVER).get(0).getHost();
+        String fooApiUrl = String.format("http://%s%s",resourceServerHost, PATH);
         List<FooModel> foos = this.webClient.get()
             .uri(fooApiUrl)
             .retrieve()

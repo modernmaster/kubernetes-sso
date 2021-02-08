@@ -14,18 +14,18 @@ spring:
     oauth2:
       client:
         registration:
-          custom:
-            client-id: ssoClient-1
-            client-secret: ssoClientSecret-1
-            scope: read,write
+          ebay:
+            client-id: JamesMcG-JamesMcG-PRD-42eb84eea-d7331a34
+            client-secret: PRD-2eb84eea59dd-c6e5-462d-aa07-6a61
+            scope: https://api.ebay.com/oauth/api_scope,https://api.ebay.com/oauth/api_scope/commerce.identity.readonly
             authorization-grant-type: authorization_code
-            redirect-uri: https://localhost/login/oauth2/code/custom
+            redirect-uri: James_McGuigan-JamesMcG-JamesM-ptzwhb
         provider:
-          custom:
-            authorization-uri: https://localhost/auth/realms/baeldung/protocol/openid-connect/auth
-            token-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/token
-            user-info-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/userinfo
-            user-name-attribute: preferred_username
+          ebay:
+            token-uri: https://api.ebay.com/identity/v1/oauth2/token
+            authorization-uri: https://auth.ebay.com/oauth2/authorize
+            user-info-uri: https://apiz.ebay.com/commerce/identity/v1/user
+            user-name-attribute: username
   thymeleaf:
     cache: false
   cache:
@@ -41,10 +41,14 @@ logging:
     root: DEBUG
     org:
       apache:
-        http: DEBUG
+        http: ERROR
     springframework:
       data:
         rest:
           webmvc:
-            json: DEBUG
+            json: ERROR
+    o:
+      s:
+        web:
+          client: DEBUG
 

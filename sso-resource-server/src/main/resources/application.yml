@@ -12,15 +12,15 @@ eureka:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
     org:
       apache:
-        http: INFO
+        http: DEBUG
     springframework:
       data:
         rest:
           webmvc:
-            json: ERROR
+            json: DEBUG
 
 server:
   port: 8080
@@ -35,5 +35,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://sso-authorization-server/auth/realms/baeldung
-          jwk-set-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/certs
+          issuer-uri: https://api.ebay.com/identity/v1/oauth2/token
+#          jwk-set-uri: https://api.sandbox.ebay.com/identity/v1/oauth2/token
+#          issuer-uri: http://sso-authorization-server/auth/realms/baeldung
+#          jwk-set-uri: http://sso-authorization-server/auth/realms/baeldung/protocol/openid-connect/certs
